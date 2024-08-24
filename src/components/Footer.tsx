@@ -84,7 +84,7 @@ function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-4">
           <div className="text-center lg:text-left">
             <div className="flex h-10 items-center justify-center lg:justify-start text-white rounded-lg font-extrabold text-2xl">
-              Ph <span className="text-primary">.</span>
+              Prep <span className="text-primary">.</span>
             </div>
             <p className="mt-4 text-center text-gray-200 dark:text-gray-400 lg:text-left lg:text-lg">
               Projectshut is an open source web app that enables users to freely
@@ -177,9 +177,9 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 pt-8 dark:border-gray-800 text-center lg:text-center lg:text-left">
+        <div className="mt-16 pt-8 dark:border-gray-800 text-center lg:text-centerlg:text-left">
           <p className="text-gray-200 mx-auto lg:mx-0">
-            © ProjectsHut {getCurrentYear()} All rights reserved
+            © Prep {getCurrentYear()} All rights reserved
           </p>
         </div>
       </div>

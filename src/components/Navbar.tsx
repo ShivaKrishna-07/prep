@@ -42,7 +42,7 @@ const Navbar: NextPage = () => {
               href="/"
               className="inline-flex h-10 items-center text-white rounded-lg font-extrabold text-[2rem]"
             >
-              Prep <span className="text-primary">.</span>
+              Prep <span className="text-purple-500">.</span>
             </Link>
           </div>
 
@@ -60,14 +60,14 @@ const Navbar: NextPage = () => {
                       aria-label="desktop navbar link"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={(active)=> active ? "inline-block py-2 px-3 text-center text-primary hover:text-primary rounded-lg" : "inline-block py-2 px-3 text-center text-white hover:text-primary rounded-lg"}
+                      className={(active)=> active ? "inline-block py-2 px-3 text-center text-purple-500 hover:text-purple-500 rounded-lg" : "inline-block py-2 px-3 text-center text-white hover:text-purple-500 rounded-lg"}
                     >
                       {navLink.name}
                     </NavLink>
                   ) : (
                     <NavLink
                       href={navLink.path}
-                      className={(active)=> active ? "inline-block py-2 px-3 text-center text-primary hover:text-primary rounded-lg" : "inline-block py-2 px-3 text-center text-white hover:text-primary rounded-lg"}
+                      className={(active)=> active ? "inline-block py-2 px-3 text-center text-purple-500 hover:text-purple-500 rounded-lg" : "inline-block py-2 px-3 text-center text-white hover:text-purple-500  rounded-lg"}
                     >
                       {navLink.name}
                     </NavLink>
