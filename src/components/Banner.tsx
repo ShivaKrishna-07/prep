@@ -8,10 +8,10 @@ const Banner = () => {
         <h1 className='text-white text-5xl text-center font-bold'>Our <span className="text-purple-500">Resources</span></h1>
 
         <div className='flex justify-center m-auto gap-4 w-[80%] flex-wrap py-8'>
-          <Card title="Notes" />
-          <Card title="Syllabus" />
-          <Card title="PYQs" />
-          <Card title="Results" />
+          <Card title="Notes" link="/notes" />
+          <Card title="Syllabus" link="/syllabus" />
+          <Card title="PYQs" link="/pyqs" />
+          <Card title="Results" link="results" />
         </div>
 
     </div>

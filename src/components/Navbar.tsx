@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { NextPage } from "next";
 import Link from "next/link";
 import { NavLink } from "./NavLink";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 
 interface NavLink {
@@ -74,6 +75,7 @@ const Navbar: NextPage = () => {
                   )}
                 </li>
               ))}
+              <li><ThemeToggleButton/></li>
             </ul>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { ReactNode } from 'react'
 import { HiChartBar } from "react-icons/hi";
 import { HiClipboard } from "react-icons/hi";
@@ -6,6 +7,7 @@ import { HiBookmark } from "react-icons/hi";
 
 interface Resources{
     title:string;
+    link: string;
 }
 
 const icons = {
@@ -14,20 +16,22 @@ const icons = {
     Results: HiChartBar,
     PYQs: HiDocumentDuplicate
 }
-const Card = ({title}: Resources) => {
+const Card = ({title, link}: Resources) => {
 
     const IconComponent = icons[title as keyof typeof icons];
 
 
   return (
-    <div className='h-[200px] flex flex-col justify-center items-center border border-gray-900 w-[400px] gap-2 text-white cursor-pointer hover:bg-zinc-800 rounded-xl p-8'>
-        <div className=''>
-        <IconComponent className='text-white text-5xl bg-purple-500 rounded-lg p-2' />
+    <Link href={link}>
+        <div className='h-[200px] flex flex-col justify-center items-center border border-gray-900 w-[400px] gap-2 text-white cursor-pointer hover:bg-zinc-800 rounded-xl p-8'>
+            <div className=''>
+            <IconComponent className='text-white text-5xl rounded-lg ' />
+            </div>
+            <h4>
+                {title}
+            </h4>
         </div>
-        <h4 className=''>
-            {title}
-        </h4>
-    </div>
+    </Link>
   )
 }
 
