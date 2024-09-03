@@ -2,3 +2,4 @@ notes
 syllabus
 pyq
 result
+ai based doubt solver
