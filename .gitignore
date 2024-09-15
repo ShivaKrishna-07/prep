@@ -37,3 +37,4 @@ next-env.d.ts
 
 #google drive credentials
 /src/.env.local
+/src/constants/exam-prep-ddcaf-2eeb94437b6c.json
