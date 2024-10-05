@@ -3,11 +3,23 @@
 import BranchCard from "@/components/BranchCard";
 import React from "react";
 
-const page = ({ params }: { params: { year: string } }) => {
+export interface NotesProps{
+  params: {
+    year: string;
+    branch: string;
+  }
+}
+
+const page = ({ params }: NotesProps) => {
 
   return (
+
+    params.year == '1' ? (
+      <div></div>
+    ):
+    (
     <div className="min-h-screen w-full">
-        <h1 className="text-center text-5xl font-bold py-5">Select your <span className="text-purple-500">Branch</span></h1>
+        <h1 className="text-white text-center text-5xl font-bold py-5">Select your <span className="text-purple-500">Branch</span></h1>
       <div>
         <BranchCard branch="CSE" link={`/notes/${params.year}/cse`} />
         <BranchCard branch="IT" link={`/notes/${params.year}/it`} />
@@ -18,6 +30,7 @@ const page = ({ params }: { params: { year: string } }) => {
         <BranchCard branch="EEE" link={`/notes/${params.year}/eee`} />
       </div>
     </div>
+    )
   );
 };
 
