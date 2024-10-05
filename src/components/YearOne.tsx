@@ -1,32 +1,17 @@
 "use client";
+import { drive_v3 } from "googleapis";
+import SubjectCard from "./SubjectCard";
 
-import { useEffect, useState } from "react";
+type Props = {
+  folders: drive_v3.Schema$File[];
+};
 
-const YearOne = () => {
-  const [Folders, setFolders] = useState();
+const YearOne = ({folders}:Props) => {
 
   const path = `notes/1`;
-  console.log("Hello", Folders);
+  console.log("Helloooo", folders);
 
-  useEffect(() => {
-    const fetchFolders = async () => {
-      try {
-        const response = await fetch(
-          "/api?folderPath=Resources/Notes/1st_year"
-        );
-        const data = await response.json();
-        console.log("Api data:", data);
-
-        setFolders(data);
-      } catch (error) {
-        console.error("Error fetching folders:", error);
-      }
-    };
-
-    fetchFolders();
-  }, []);
-
-  return <div>YearOne</div>;
+  return <SubjectCard folders={folders} />;
 };
 
 export default YearOne;
