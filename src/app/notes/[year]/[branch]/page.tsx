@@ -9,7 +9,7 @@ const page = ({ params }: NotesProps) => {
 
   return (
     <div>
-        notes
+      notes
     </div>
   )
 }

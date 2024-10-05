@@ -3,3 +3,4 @@ syllabus
 pyq
 result
 ai based doubt solver
+youtube video links for every subject
