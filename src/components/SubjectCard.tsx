@@ -1,26 +1,25 @@
-// src/components/SubjectCard.tsx
-import React from "react";
-import { drive_v3 } from "googleapis";
+
 import { slugify } from "@/lib/utils";
+import { drive_v3 } from "googleapis";
+import Link from "next/link";
 
 type SubjectCardProps = {
-  folders: drive_v3.Schema$File[];
+  folder: drive_v3.Schema$File;
 };
 
-const SubjectCard: React.FC<SubjectCardProps> = ({ folders }) => {
+const SubjectCard: React.FC<SubjectCardProps> = ({ folder }) => {
+  const slugifiedName = slugify(folder.name);
+
+  const path = `all-branches/${slugifiedName}`
 
   return (
-    <div className="flex w-1/2 m-auto flex-col space-y-4 p-4">
-      {folders.map((folder) => (
-        <div
-          onClick={() => handleSubmit(folder.name)}
-          key={folder.id}
-          className="bg-gray-200 cursor-pointer p-4 rounded shadow-md"
-        >
-          <h2 className="text-xl font-bold">{folder.name || "Untitled"}</h2> {/* Fallback if name is null */}
-        </div>
-      ))}
-    </div>
+    <Link href={{ pathname: path, query: { folderId: folder.id } }} className="flex w-1/2 m-auto flex-col space-y-4 p-4">
+      <div
+        className="bg-gray-200 cursor-pointer p-4 rounded shadow-md"
+      >
+        <h2 className="text-xl font-bold">{folder.name || "Untitled"}</h2>
+      </div>
+    </Link>
   );
 };
 

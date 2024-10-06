@@ -63,6 +63,25 @@ export const getDriveFolders = async (folderPath: string): Promise<drive_v3.Sche
   }
 };
 
+export const getNotesById = async (folderId: string) =>{
+  try {
+    if (!folderId) {
+      console.error(`No folder found for path: ${folderId}`);
+      return [];
+    }
+
+    const response = await drive.files.list({
+      q: `'${folderId}' in parents`,
+      fields: "files(id, name, mimeType, webViewLink)",
+    });
+
+    return response.data.files || [];
+  } catch (error) {
+    console.error("Error fetching files from Google Drive:", error);
+    return [];
+  }
+}
+
 // Helper function to get folder ID by folder path
 const getFolderIdByPath = async (folderPath: string): Promise<string | null> => {
   const folderNames = folderPath.split("/");

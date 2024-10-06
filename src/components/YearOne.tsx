@@ -11,7 +11,13 @@ const YearOne = ({folders}:Props) => {
   const path = `notes/1`;
   console.log("Helloooo", folders);
 
-  return <SubjectCard folders={folders} />;
+  return(
+    <>
+      {folders.map((folder) => (
+        <SubjectCard key={folder.id} folder={folder} />
+      ))}
+    </>
+  )
 };
 
 export default YearOne;

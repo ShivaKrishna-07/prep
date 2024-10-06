@@ -19,8 +19,8 @@ export interface NotesProps {
 const Page = async ({ params }: NotesProps) => {
   const year = params.year;
   const folderPath = `Notes/1st_year`;
-
-  // Fetch folders from Google Drive
+  
+  
   const folders: drive_v3.Schema$File[] = await getNotes(folderPath);
   // console.log("Fetched folders:", folders);
 
