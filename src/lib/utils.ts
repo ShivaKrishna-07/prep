@@ -6,6 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const slugify = (text: string | null | undefined) => {
+
+  if (!text) {
+    return '';
+  }
+
   return text
     .toString()
     .toLowerCase()

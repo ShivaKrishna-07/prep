@@ -5,12 +5,14 @@ import Link from "next/link";
 
 type SubjectCardProps = {
   folder: drive_v3.Schema$File;
+  branch:string;
 };
 
-const SubjectCard: React.FC<SubjectCardProps> = ({ folder }) => {
+const SubjectCard: React.FC<SubjectCardProps> = ({ folder, branch }) => {
+
   const slugifiedName = slugify(folder.name);
 
-  const path = `all-branches/${slugifiedName}`
+  const path = branch == 'all-branches' ? `${branch}/${slugifiedName}`: `${slugifiedName}`
 
   return (
     <Link href={{ pathname: path, query: { folderId: folder.id } }} className="flex w-1/2 m-auto flex-col space-y-4 p-4">

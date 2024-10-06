@@ -14,7 +14,7 @@ const YearOne = ({folders}:Props) => {
   return(
     <>
       {folders.map((folder) => (
-        <SubjectCard key={folder.id} folder={folder} />
+        <SubjectCard branch="all-branches" key={folder.id} folder={folder} />
       ))}
     </>
   )

@@ -1,6 +1,5 @@
 import { getNotesById } from '@/app/api/gemini';
 import ShowFiles from '@/components/ShowFiles';
-import { useRouter } from 'next/navigation';
 import React from 'react'
 
 type PageProps = {

@@ -1,15 +1,21 @@
 import { getNotes } from '@/lib/pages/api'
 import React from 'react'
 import { NotesProps } from '../page'
+import SubjectCard from '@/components/SubjectCard'
 
-const page = ({ params }: NotesProps) => {
-  const path = `notes/${params.year}/${params.branch}`
+const page = async({ params }: NotesProps) => {
+  const path = `Notes/${params.year}/${params.branch}`
+  
 
-  const response = getNotes(path)
+  const folders = await getNotes(path);
+  console.log(folders);
+  
 
   return (
     <div>
-      notes
+      {folders.map((folder) => (
+        <SubjectCard branch={params.branch} key={folder.id} folder={folder} />
+      ))}
     </div>
   )
 }
