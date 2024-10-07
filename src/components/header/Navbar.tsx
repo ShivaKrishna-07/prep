@@ -19,8 +19,8 @@ const Navbar: NextPage = () => {
       path: "/",
     },
     {
-      name: "Projects",
-      path: "/projects",
+      name: "Learn",
+      path: "/learn",
     },
     {
       name: "Docs",
@@ -28,7 +28,7 @@ const Navbar: NextPage = () => {
     },
     {
       name: "GitHub",
-      path: "https://github.com/priyankarpal/ProjectsHut",
+      path: "https://github.com/ShivaKrishna-07/prep",
       external: true,
     },
   ];

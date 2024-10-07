@@ -25,7 +25,7 @@ const Page = async ({ params }: NotesProps) => {
   // console.log("Fetched folders:", folders);
 
   return (
-    year === "1" ? (
+    year === "1st_year" ? (
       <YearOne folders={folders} />
     ) : (
       <div className="min-h-screen w-full">
