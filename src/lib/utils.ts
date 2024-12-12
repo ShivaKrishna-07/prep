@@ -21,3 +21,10 @@ export const slugify = (text: string | null | undefined) => {
     .replace(/^-+/, '') // Trim hyphens from start
     .replace(/-+$/, ''); // Trim hyphens from end
 };
+
+export const filterPdfs = (pdfs: any, searchQuery: string) => {
+  const query = searchQuery.toLowerCase();
+  return pdfs.filter(pdf => 
+    pdf.name.toLowerCase().includes(query)
+  );
+};

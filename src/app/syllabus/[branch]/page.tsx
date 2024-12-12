@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: { branch: string } }) {
   // console.log("From branch: ", response);
   
   return (
-    <ShowFiles files={response} />
+    <ShowFiles files = {response} />
   );
 }
 
