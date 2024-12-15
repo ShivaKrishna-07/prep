@@ -28,7 +28,7 @@ const icons = {
 
 export default function page({ params }: { params: { year: string } }) {
   return (
-    <div className="my-10 max-w-3xl mx-auto ">
+    <div className="my-10 max-w-3xl mx-auto">
       <div className="mb-12">
       <div className="flex items-center gap-3 mb-2">
         <div className="p-2 bg-zinc-900 rounded-lg">

@@ -7,10 +7,16 @@ interface Branch {
   branch: string;
   IconComponent: any;
   description: string;
-  color:string;
+  color: string;
 }
 
-const BranchCard = ({ link, branch, IconComponent, color, description }: Branch) => {
+const BranchCard = ({
+  link,
+  branch,
+  IconComponent,
+  color,
+  description,
+}: Branch) => {
   return (
     <Link href={link}>
       <div className="bg-zinc-900 rounded-xl p-6 hover:bg-zinc-800/90 transition-all duration-300 border border-zinc-800 group">
@@ -20,7 +26,9 @@ const BranchCard = ({ link, branch, IconComponent, color, description }: Branch)
               <IconComponent className={`w-6 h-6 text-${color}-400`} />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-white mb-1">{branch}</h3>
+              <h3 className="text-xl font-semibold text-white mb-1">
+                {branch}
+              </h3>
               <p className="text-gray-400 text-sm">{description}</p>
             </div>
           </div>
