@@ -1,5 +1,7 @@
 import { google } from "googleapis";
-import credentials from "@/constants/exam-prep-ddcaf-2eeb94437b6c.json";
+
+const googleCloudCredentials = process.env.GOOGLE_CLOUD_CREDENTIALS;
+const credentials = JSON.parse(googleCloudCredentials); // Parse the JSON string
 
 export const getDriveFiles = async (folderPath: string) => {
   try {
