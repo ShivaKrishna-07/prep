@@ -14,7 +14,7 @@ interface FilesPageProps {
   files: SchemaFile[];
 }
 
-interface Pdf {
+export interface Pdf {
   name: string;
   webViewLink: string;
 }

@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { Pdf } from "@/components/ShowFiles";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -24,7 +25,7 @@ export const slugify = (text: string | null | undefined) => {
 
 export const filterPdfs = (pdfs: any, searchQuery: string) => {
   const query = searchQuery.toLowerCase();
-  return pdfs.filter(pdf => 
+  return pdfs.filter((pdf: Pdf) => 
     pdf.name.toLowerCase().includes(query)
   );
 };
