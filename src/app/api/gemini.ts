@@ -1,6 +1,5 @@
 import { google, drive_v3 } from "googleapis";
-import credentials from "@/constants/exam-prep-ddcaf-2eeb94437b6c.json";
-
+import credentials from '@/constants/exam-prep-ddcaf-2eeb94437b6c.json'
 
 const auth = new google.auth.GoogleAuth({
   credentials: {
@@ -15,7 +14,6 @@ const drive: drive_v3.Drive = google.drive({ version: "v3", auth });
 
 const ROOT_FOLDER_ID = "1nclsgRlzsq9-XfNxzDPz_hfmDxs29HbA";
 
-// Function to get the files in a folder by path
 export const getFiles = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
   try {
     const folderId = await getFolderIdByPath(folderPath);
@@ -37,7 +35,6 @@ export const getFiles = async (folderPath: string): Promise<drive_v3.Schema$File
   }
 };
 
-// Function to get notes in a specific folder by path (similar to getFiles)
 export const getFolders = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
   try {
     const folderId = await getFolderIdByPath(folderPath);
@@ -78,7 +75,6 @@ export const getFilesById = async (folderId: string) =>{
   }
 }
 
-// Helper function to get folder ID by folder path
 const getFolderIdByPath = async (folderPath: string): Promise<string | null> => {
   const folderNames = folderPath.split("/");
   let parentId = ROOT_FOLDER_ID;
@@ -95,7 +91,6 @@ const getFolderIdByPath = async (folderPath: string): Promise<string | null> => 
   return parentId;
 };
 
-// Helper function to get folder ID by folder name
 const getFolderIdByName = async (
   parentId: string,
   folderName: string

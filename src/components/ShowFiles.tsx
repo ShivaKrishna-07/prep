@@ -28,7 +28,7 @@ const ShowFiles = ({ files }: FilesPageProps) => {
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-3xl mx-auto">
-        <Header branch={branch} totalFiles={files.length} />
+        <Header branch={branch}  totalFiles={files.length} />
         <SearchBar 
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
