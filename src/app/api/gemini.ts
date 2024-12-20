@@ -16,7 +16,7 @@ const drive: drive_v3.Drive = google.drive({ version: "v3", auth });
 const ROOT_FOLDER_ID = "1nclsgRlzsq9-XfNxzDPz_hfmDxs29HbA";
 
 // Function to get the files in a folder by path
-export const getDriveFiles = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
+export const getFiles = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
   try {
     const folderId = await getFolderIdByPath(folderPath);
 
@@ -37,12 +37,8 @@ export const getDriveFiles = async (folderPath: string): Promise<drive_v3.Schema
   }
 };
 
-// Function to get notes in a specific folder by path (similar to getDriveFiles)
-export const getNotes = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
-  return getDriveFolders(folderPath);
-};
-
-export const getDriveFolders = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
+// Function to get notes in a specific folder by path (similar to getFiles)
+export const getFolders = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
   try {
     const folderId = await getFolderIdByPath(folderPath);
 
@@ -63,7 +59,7 @@ export const getDriveFolders = async (folderPath: string): Promise<drive_v3.Sche
   }
 };
 
-export const getNotesById = async (folderId: string) =>{
+export const getFilesById = async (folderId: string) =>{
   try {
     if (!folderId) {
       console.error(`No folder found for path: ${folderId}`);

@@ -1,4 +1,4 @@
-import { getNotes } from "@/app/api/gemini";
+import { getFolders} from "@/app/api/gemini";
 import BranchCard from "@/components/BranchCard";
 import YearOne from "@/components/YearOne";
 import React from "react";
@@ -20,11 +20,10 @@ export interface NotesProps {
 const Page = async ({ params }: NotesProps) => {
   const { year } = params;
 
-  // Folder path based on year (extendable for future years)
   const folderPath = `Notes/${year}`;
 
   // Fetch folders using the provided API
-  const folders: drive_v3.Schema$File[] = await getNotes(folderPath);
+  const folders: drive_v3.Schema$File[] = await getFolders(folderPath);
 
   return year === "1st_year" ? (
     <YearOne folders={folders} />

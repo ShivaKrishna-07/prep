@@ -6,15 +6,20 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import PdfCard from './PdfCard';
 import { useParams } from 'next/navigation';
+import { drive_v3 } from 'googleapis';
+
+type SchemaFile = drive_v3.Schema$File;
 
 interface FilesPageProps {
-    files: File[];
+    files: SchemaFile[];
   }
 
 const ShowFiles = ({ files }: FilesPageProps) => {
   console.log(files);
 
-  const { branch } = useParams();
+  const params = useParams() as { branch: string }; // Assert that branch exists
+
+  const branch = params.branch;
 
   const [searchQuery, setSearchQuery] = useState('');
 

@@ -1,4 +1,4 @@
-import { getNotes } from "@/lib/pages/api";
+import { getFiles } from "@/app/api/gemini";
 import React from "react";
 import SubjectCard from "@/components/SubjectCard";
 import {
@@ -35,7 +35,7 @@ type NotesProps = {
 
 const page = async ({ params }: NotesProps) => {
   const path = `Notes/${params.year}/${params.branch}`;
-  const folders = await getNotes(path);
+  const folders = await getFiles(path);
 
   return (
     <div className="my-10 max-w-3xl mx-auto">

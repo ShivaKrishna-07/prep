@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { FirebaseProvider } from "../context/Firebase";
 import Navbar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
 import { ThemeProvider } from "@/components/theme-provider"
@@ -21,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <FirebaseProvider>
+       
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -33,7 +32,6 @@ export default function RootLayout({
           <Footer/>
           </ThemeProvider>
 
-        </FirebaseProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Download, FileText, Eye } from "lucide-react";
 
-interface PdfCardProps {
+export interface PdfCardProps {
   name: string;
   webViewLink: string; // Pass the complete Google Drive link here
 }

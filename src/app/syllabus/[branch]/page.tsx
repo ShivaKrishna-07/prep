@@ -1,10 +1,10 @@
 
 import ShowFiles from "@/components/ShowFiles";
-import { getDriveFiles } from "@/app/api/gemini";
+import { getFiles } from "@/app/api/gemini";
 
 export default async function Page({ params }: { params: { branch: string } }) {
 
-  const response = await getDriveFiles(`Syllabus/${params.branch}`)
+  const response = await getFiles(`Syllabus/${params.branch}`)
   // console.log("From branch: ", response);
   
   return (

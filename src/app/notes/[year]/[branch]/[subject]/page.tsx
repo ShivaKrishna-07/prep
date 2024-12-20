@@ -1,10 +1,10 @@
-import { getNotesById } from '@/app/api/gemini';
+import { getFilesById } from '@/app/api/gemini';
 import ShowFiles from '@/components/ShowFiles';
 import React from 'react'
 
 type PageProps = {
     searchParams: {
-      folderId?: string;
+      folderId: string;
     };
   };
 
@@ -12,7 +12,7 @@ const page = async({ searchParams }: PageProps) => {
 
     const folderId = searchParams.folderId;
 
-    const files = await getNotesById(folderId);
+    const files = await getFilesById(folderId);
     
 
   return (
