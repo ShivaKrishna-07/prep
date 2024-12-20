@@ -1,5 +1,5 @@
 
-import ShowFiles from "@/components/ShowFiles";
+import ShowFiles from "@/components/files/ShowFiles";
 import { getFiles } from "@/app/api/gemini";
 
 export default async function Page({ params }: { params: { branch: string } }) {

@@ -19,7 +19,7 @@ const BranchCard = ({
 }: Branch) => {
   return (
     <Link href={link}>
-      <div className="bg-zinc-900 rounded-xl p-6 hover:bg-zinc-800/90 transition-all duration-300 border border-zinc-800 group">
+      <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/90 transition-all duration-300">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <div className="p-2 bg-gray-800 rounded-lg group-hover:bg-gray-700 transition-colors">

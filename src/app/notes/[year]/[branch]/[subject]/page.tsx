@@ -1,5 +1,5 @@
 import { getFilesById } from '@/app/api/gemini';
-import ShowFiles from '@/components/ShowFiles';
+import ShowFiles from '@/components/files/ShowFiles';
 import React from 'react'
 
 type PageProps = {

@@ -1,29 +1,38 @@
-import * as React from "react"
+import Link from 'next/link';
+import React, { ReactNode } from 'react'
+import { HiChartBar } from "react-icons/hi";
+import { HiClipboard } from "react-icons/hi";
+import { HiDocumentDuplicate } from "react-icons/hi";
+import { HiBookmark } from "react-icons/hi";
 
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+interface Resources{
+    title:string;
+    link: string;
+}
 
-export function CardWithForm() {
+const icons = {
+    Notes: HiBookmark,
+    Syllabus: HiClipboard,
+    Results: HiChartBar,
+    PYQs: HiDocumentDuplicate
+}
+const Card = ({title, link}: Resources) => {
+
+    const IconComponent = icons[title as keyof typeof icons];
+
+
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        All notes
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
-    </Card>
+    <Link href={link}>
+        <div className='h-[200px] flex flex-col justify-center items-center border border-gray-900 w-[400px] gap-2 text-white cursor-pointer hover:bg-zinc-800 rounded-xl p-8'>
+            <div className=''>
+            <IconComponent className='text-white text-5xl rounded-lg ' />
+            </div>
+            <h4>
+                {title}
+            </h4>
+        </div>
+    </Link>
   )
 }
+
+export default Card
