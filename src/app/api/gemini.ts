@@ -1,16 +1,19 @@
 import { google, drive_v3 } from "googleapis";
-import credentials from '@/constants/exam-prep-ddcaf-2eeb94437b6c.json'
+import dotenv from 'dotenv'
+
+dotenv.config();
+const key = process.env.PRIVATE_KEY as string;
+const email = process.env.CLIENT_EMAIL as string;
 
 const auth = new google.auth.GoogleAuth({
   credentials: {
-    client_email: credentials.client_email,
-    private_key: credentials.private_key,
+    client_email: email,
+    private_key: key.replace(/\\n/g, '\n'),
   },
   scopes: ["https://www.googleapis.com/auth/drive.readonly"],
 });
 
 const drive: drive_v3.Drive = google.drive({ version: "v3", auth });
-
 
 const ROOT_FOLDER_ID = "1nclsgRlzsq9-XfNxzDPz_hfmDxs29HbA";
 

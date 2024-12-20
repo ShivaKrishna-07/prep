@@ -1,6 +1,6 @@
 import { Motion } from "@/components/framer-motion";
 import Link from "next/link";
-import images from "@/DB/homepage-image.json";
+import images from "@/data/homepage-image.json";
 import Image from "next/image";
 
 export default function HomePage() {

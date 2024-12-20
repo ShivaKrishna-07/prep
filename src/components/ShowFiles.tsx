@@ -15,7 +15,6 @@ interface FilesPageProps {
   }
 
 const ShowFiles = ({ files }: FilesPageProps) => {
-  console.log(files);
 
   const params = useParams() as { branch: string }; // Assert that branch exists
 

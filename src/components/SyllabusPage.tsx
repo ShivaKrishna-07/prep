@@ -12,8 +12,6 @@ interface SyllabusPageProps {
 //
 const SyllabusPage: React.FC<SyllabusPageProps> = ({ branch, files }) => {
 
-  console.log(files);
-  
 
   return (
     <div className="h-screen w-full">

@@ -9,7 +9,6 @@ type Props = {
 const YearOne = ({folders}:Props) => {
 
   const path = `notes/1`;
-  console.log("Helloooo", folders);
 
   return(
     <>
