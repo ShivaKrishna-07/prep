@@ -15,7 +15,7 @@ const BranchCard = ({
   branch,
   IconComponent,
   color,
-  description,
+  description, 
 }: Branch) => {
   return (
     <Link href={link}>
