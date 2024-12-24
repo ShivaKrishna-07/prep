@@ -3,7 +3,7 @@ import { drive_v3 } from "googleapis";
 import SubjectCard from "./SubjectCard";
 
 type Props = {
-  folders: drive_v3.Schema$File[];
+  folders: drive_v3.Schema$File[] ;
 };
 
 const YearOne = ({folders}:Props) => {

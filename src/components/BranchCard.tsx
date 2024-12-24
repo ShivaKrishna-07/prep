@@ -8,6 +8,7 @@ interface Branch {
   IconComponent: any;
   description: string;
   color: string;
+  loading?: boolean;
 }
 
 const BranchCard = ({
@@ -16,6 +17,7 @@ const BranchCard = ({
   IconComponent,
   color,
   description, 
+  loading,
 }: Branch) => {
   return (
     <Link href={link}>
