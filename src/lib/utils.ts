@@ -2,6 +2,10 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { Pdf } from "@/components/files/ShowFiles";
 
+interface Branch{
+  title: string;
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -27,5 +31,11 @@ export const filterPdfs = (pdfs: any, searchQuery: string) => {
   const query = searchQuery.toLowerCase();
   return pdfs.filter((pdf: Pdf) => 
     pdf.name.toLowerCase().includes(query)
+  );
+};
+export const filterBranches = (branches: any, searchQuery: string) => {
+  const query = searchQuery.toLowerCase();
+  return branches.filter((branch: Branch) => 
+    branch.title.toLowerCase().includes(query)
   );
 };

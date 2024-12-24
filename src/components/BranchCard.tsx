@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-interface Branch {
+export interface Branch {
   link: string;
   branch: string;
   IconComponent: any;
@@ -28,7 +28,7 @@ const BranchCard = ({
               <IconComponent className={`w-6 h-6 text-${color}-400`} />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-white mb-1">
+              <h3 className="md:text-xl font-semibold sm:text-2xl text-white mb-1">
                 {branch}
               </h3>
               <p className="text-gray-400 text-sm">{description}</p>
