@@ -24,8 +24,8 @@ const BranchCard = ({
       <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/90 transition-all duration-300">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="p-2 bg-gray-800 rounded-lg group-hover:bg-gray-700 transition-colors">
-              <IconComponent className={`w-6 h-6 text-${color}-400`} />
+            <div className="p-3 bg-zinc-800 rounded-lg group-hover:bg-gray-700 transition-colors">
+              <IconComponent className={`w-6 h-6`} />
             </div>
             <div>
               <h3 className="md:text-xl font-semibold sm:text-2xl text-white mb-1">

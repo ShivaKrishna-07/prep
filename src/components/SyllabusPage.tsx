@@ -46,8 +46,8 @@ const SyllabusPage = () => {
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-3xl mx-auto">
-        <Header branch={"Branch"} totalFiles={10} />
-        <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+        <Header heading={'Select your Branch'} tag="branches" branch={"Branch"} total={filteredBranches.length} />
+        <SearchBar placeholder="Search branch" searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
         <div className="flex flex-col gap-5">
           {filteredBranches.map((branch: Branch) => {

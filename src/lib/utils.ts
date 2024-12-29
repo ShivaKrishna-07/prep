@@ -33,9 +33,14 @@ export const filterPdfs = (pdfs: any, searchQuery: string) => {
     pdf.name.toLowerCase().includes(query)
   );
 };
+
 export const filterBranches = (branches: any, searchQuery: string) => {
   const query = searchQuery.toLowerCase();
   return branches.filter((branch: Branch) => 
     branch.title.toLowerCase().includes(query)
   );
 };
+
+export const removePdfExtension = (fileName: string) => {
+  return fileName.endsWith(".pdf") ? fileName.slice(0, -4) : fileName;
+}

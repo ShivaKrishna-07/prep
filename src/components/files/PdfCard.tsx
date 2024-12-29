@@ -1,5 +1,6 @@
 import React from "react";
 import { Download, FileText, Eye } from "lucide-react";
+import { removePdfExtension } from "@/lib/utils";
 
 export interface PdfCardProps {
   name: string;
@@ -7,6 +8,8 @@ export interface PdfCardProps {
 }
 
 const PdfCard: React.FC<PdfCardProps> = ({ name, webViewLink }) => {
+  name = removePdfExtension(name);
+
   const handleDownload = () => {
     // Extract file ID from the webViewLink
     const fileIdMatch = webViewLink.match(/\/d\/(.*?)\//);
@@ -27,13 +30,13 @@ const PdfCard: React.FC<PdfCardProps> = ({ name, webViewLink }) => {
   };
 
   return (
-    <div className="bg-zinc-900 rounded-xl p-6 hover:bg-zinc-800/90 transition-all duration-300 border border-zinc-800 group">
+    <div className="bg-zinc-900 rounded-md p-6 hover:bg-zinc-800/90 transition-all duration-300 group">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <div className="p-3 bg-zinc-800 rounded-lg group-hover:bg-zinc-700 transition-colors">
-            <FileText className="w-8 h-8 text-zinc-400" />
+            <FileText className="w-7 h-7 text-white" />
           </div>
-          <h3 className="text-lg font-semibold text-white">{name}</h3>
+          <h3 className="md:text-xl sm:text-2xl font-semibold text-white">{name}</h3>
         </div>
         <div className="flex gap-2">
           {/* View Button */}
