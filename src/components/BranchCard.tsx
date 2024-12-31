@@ -16,7 +16,7 @@ const BranchCard = ({
   branch,
   IconComponent,
   color,
-  description, 
+  description,
   loading,
 }: Branch) => {
   return (

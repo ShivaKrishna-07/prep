@@ -46,7 +46,7 @@ const SyllabusPage = () => {
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-3xl mx-auto">
-        <Header heading={'Select your Branch'} tag="branches" branch={"Branch"} total={filteredBranches.length} />
+        <Header heading={'Select your Branch'} tag="branches" total={filteredBranches.length} />
         <SearchBar placeholder="Search branch" searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
         <div className="flex flex-col gap-5">
