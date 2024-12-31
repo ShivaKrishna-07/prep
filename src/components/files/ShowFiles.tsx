@@ -31,7 +31,7 @@ const ShowFiles = ({ files }: FilesPageProps) => {
   return (
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-3xl mx-auto">
-        <Header heading={`${branch.toUpperCase()} Syllabus`} tag="files" branch={branch} total={filteredPdfs.length} />
+        <Header heading={`${branch.toUpperCase()} Syllabus`} tag="files" total={filteredPdfs.length} />
         <SearchBar placeholder="Search files..." searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
         <div className="space-y-4">
