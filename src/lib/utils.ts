@@ -5,6 +5,9 @@ import { Pdf } from "@/components/files/ShowFiles";
 interface Branch{
   title: string;
 }
+interface FolderProps{
+  name: string;
+}
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -40,6 +43,13 @@ export const filterBranches = (branches: any, searchQuery: string) => {
     branch.title.toLowerCase().includes(query)
   );
 };
+
+export const filterFolders = (folders: any, searchQuery: string) => {
+  const query = searchQuery.toLowerCase();
+  return folders.filter((folder: FolderProps) => 
+    folder.name.toLowerCase().includes(query)
+  );
+}
 
 export const removePdfExtension = (fileName: string) => {
   return fileName.endsWith(".pdf") ? fileName.slice(0, -4) : fileName;

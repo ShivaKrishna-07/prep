@@ -3,7 +3,7 @@ import { drive_v3 } from "googleapis";
 import { ChevronRight, Notebook, NotebookPenIcon, NotepadTextIcon } from "lucide-react";
 import Link from "next/link";
 
-type SubjectCardProps = {
+export type SubjectCardProps = {
   folder: drive_v3.Schema$File;
   branch: string;
 };
