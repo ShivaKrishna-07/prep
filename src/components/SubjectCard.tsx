@@ -1,6 +1,6 @@
 import { slugify } from "@/lib/utils";
 import { drive_v3 } from "googleapis";
-import { ChevronRight, NotepadTextIcon } from "lucide-react";
+import { ChevronRight, Notebook, NotebookPenIcon, NotepadTextIcon } from "lucide-react";
 import Link from "next/link";
 
 type SubjectCardProps = {
@@ -18,14 +18,14 @@ const SubjectCard: React.FC<SubjectCardProps> = ({ folder, branch }) => {
 
   return (
     <Link href={{ pathname: path, query: { folderId: folder.id } }}>
-      <div className="bg-zinc-900 rounded-xl p-6 hover:bg-zinc-800/90 transition-all duration-300 border border-zinc-800 group">
+      <div className="bg-zinc-900 rounded-lg p-6 hover:bg-zinc-800/90 transition-all duration-300">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="p-2 bg-gray-800 rounded-lg group-hover:bg-gray-700 transition-colors">
-              <NotepadTextIcon className={`w-6 h-6 text-blue-400`} />
+            <div className="p-2 bg-zinc-800 rounded-lg group-hover:bg-gray-700 transition-colors">
+              <NotebookPenIcon className={`w-6 h-6`} />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-white mb-1">
+              <h3 className="md:text-xl font-semibold sm:text-2xl text-white mb-1">
                 {folder.name}
               </h3>
             </div>
