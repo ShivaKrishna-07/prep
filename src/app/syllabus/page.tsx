@@ -5,3 +5,4 @@ export default function page({ params }: { params: { year: string } }) {
     <SyllabusPage/>
   );
 }
+ 
