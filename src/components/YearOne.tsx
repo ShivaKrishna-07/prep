@@ -11,8 +11,6 @@ type Props = {
 };
 
 const YearOne = ({folders}:Props) => {
- 
-  const path = `notes/1`;
   const [searchQuery, setSearchQuery] = useState("");
   const filteredFolders = filterFolders(folders, searchQuery);
   return(
@@ -28,7 +26,7 @@ const YearOne = ({folders}:Props) => {
         <div className="flex flex-col gap-5">
           {filteredFolders.map((folder:any) => (
             <SubjectCard
-              branch={"All Branches"}
+              branch={"all-branches"}
               key={folder.id}
               folder={folder}
             />

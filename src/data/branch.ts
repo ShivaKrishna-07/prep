@@ -1,4 +1,44 @@
 
+export const colleges = [
+  {
+    title: "JNTUH",
+    icon: "Building",
+    link: "jntuh",
+    description: "PYQs based on JNTUH Syllabus"
+  },
+  {
+    title: "VBIT",
+    icon: "Building",
+    link: "vbit",
+    description: "PYQs based on VBIT Syllabus"
+  }
+]
+export const years = [
+  {
+    year: "1",
+    title: "1st Year",
+    link: "1st_year",
+    icon: "GraduationCap"
+  },
+  {
+    year: "2",
+    title: "2nd Year",
+    link: "2nd_year",
+    icon: "GraduationCap"
+  },
+  {
+    year: "3",
+    title: "3rd Year",
+    link: "3rd_year",
+    icon: "GraduationCap"
+  },
+  {
+    year: "4",
+    title: "4th Year",
+    link: "4th_year",
+    icon: "GraduationCap"
+  },
+]
 export const branches = [
   {
     title: 'CSE',
@@ -55,30 +95,3 @@ export const branches = [
     color: 'red'
   },
 ];
-
-export const years = [
-  {
-    year: "1",
-    title: "1st Year",
-    link: "1st_year",
-    icon: "GraduationCap"
-  },
-  {
-    year: "2",
-    title: "2nd Year",
-    link: "2nd_year",
-    icon: "GraduationCap"
-  },
-  {
-    year: "3",
-    title: "3rd Year",
-    link: "3rd_year",
-    icon: "GraduationCap"
-  },
-  {
-    year: "4",
-    title: "4th Year",
-    link: "4th_year",
-    icon: "GraduationCap"
-  },
-]
