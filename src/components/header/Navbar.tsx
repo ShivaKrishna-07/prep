@@ -35,15 +35,15 @@ const Navbar: NextPage = () => {
 
   return (
     <Suspense>
-      <nav className="top-0 z-10 sticky border-b border-gray-800 mx-auto bg-transparent backdrop-blur-sm">
+      <nav className="top-0 z-10 sticky border-b border-zinc-800 mx-auto bg-transparent backdrop-blur-sm">
         <div className="flex justify-between md:justify-around p-5 w-full ">
-          {/* Logo for project Hut */}
+          
           <div className="item-navbar" id="logo-ph">
             <Link
               href="/"
               className="inline-flex h-10 items-center text-white rounded-lg font-extrabold text-[2rem]"
             >
-              Prep <span className="text-purple-500">.</span>
+              Prep
             </Link>
           </div>
 
@@ -61,21 +61,20 @@ const Navbar: NextPage = () => {
                       aria-label="desktop navbar link"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={(active)=> active ? "inline-block py-2 px-3 text-center text-purple-500 hover:text-purple-500 rounded-lg" : "inline-block py-2 px-3 text-center text-white hover:text-purple-500 rounded-lg"}
+                      className={(active)=> active ? "inline-block py-2 px-3 text-center rounded-lg" : "inline-block py-2 px-3 text-center text-white rounded-lg"}
                     >
                       {navLink.name}
                     </NavLink>
                   ) : (
                     <NavLink
                       href={navLink.path}
-                      className={(active)=> active ? "inline-block py-2 px-3 text-center text-purple-500 hover:text-purple-500 rounded-lg" : "inline-block py-2 px-3 text-center text-white hover:text-purple-500  rounded-lg"}
+                      className={(active)=> active ? "inline-block py-2 px-3 text-center rounded-lg" : "inline-block py-2 px-3 text-center text-white rounded-lg"}
                     >
                       {navLink.name}
                     </NavLink>
                   )}
                 </li>
               ))}
-              <li><ThemeToggleButton/></li>
             </ul>
           </div>
         </div>

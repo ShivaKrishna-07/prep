@@ -25,7 +25,7 @@ const Card = ({ title, link }: Resources) => {
         <div className="">
           <IconComponent className="text-white text-5xl rounded-lg " />
         </div>
-        <h4>{title}</h4>
+        <h4 className="font-medium" >{title}</h4>
       </div>
     </Link>
   );

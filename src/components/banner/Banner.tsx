@@ -5,7 +5,7 @@ const Banner = () => {
 
   return (
     <div id="learn" className='min-h-screen p-10 pt-24'>
-        <h1 className='text-white text-4xl text-center font-semibold'>Our <span className="text-purple-500">Resources</span></h1>
+        <h1 className='text-white text-4xl text-center font-extrabold'>Our Resources</h1>
 
         <div className='flex justify-center m-auto gap-4 w-[80%] flex-wrap py-8'>
           <Card title="Notes" link="/notes" />
