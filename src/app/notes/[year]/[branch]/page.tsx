@@ -1,4 +1,4 @@
-import { getFiles } from "@/app/api/gemini";
+import { getFiles } from "@/app/api/drive";
 import React from "react";
 import SubjectCard from "@/components/SubjectCard";
 import {

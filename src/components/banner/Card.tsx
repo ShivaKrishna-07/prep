@@ -28,7 +28,7 @@ const Card = ({ title, link }: Resources) => {
         <h4 className="font-medium" >{title}</h4>
       </div>
     </Link>
-  );
+  ); 
 };
 
 export default Card;

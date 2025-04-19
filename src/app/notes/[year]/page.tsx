@@ -1,4 +1,4 @@
-import { getFolders } from "@/app/api/gemini";
+import { getFolders } from "@/app/api/drive";
 import BranchCard from "@/components/BranchCard";
 import YearOne from "@/components/YearOne";
 import React from "react";
@@ -7,9 +7,6 @@ import { branches } from "@/data/branch";
 import * as icons from "lucide-react";
 import Header from "@/components/files/Header";
 
-type Props = {
-  folders: drive_v3.Schema$File[];
-};
 
 export interface NotesProps {
   params: {
@@ -32,7 +29,7 @@ const Page = async ({ params }: NotesProps) => {
     <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-3xl mx-auto">
         <Header
-          heading={"Select your Branch"}
+          heading="Select your Branch"
           tag="branches"
           total={branches.length}
         />

@@ -1,114 +1,57 @@
-import { google, drive_v3 } from "googleapis";
-import dotenv from 'dotenv'
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-dotenv.config();
-const key = process.env.PRIVATE_KEY as string;
-const email = process.env.CLIENT_EMAIL as string;
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey!);
 
-const auth = new google.auth.GoogleAuth({
-  credentials: {
-    client_email: email,
-    private_key: key.replace(/\\n/g, '\n'),
-  },
-  scopes: ["https://www.googleapis.com/auth/drive.readonly"],
-});
+export const analyzePyqs = async (text: string) => {
+  const prompt = `
+    Analyze the given text containing multiple previous year questions (PYQs)
 
-const drive: drive_v3.Drive = google.drive({ version: "v3", auth });
+    ### **Exam Paper Format:**
+    1. **Question 1** contains 10 sub-questions (a-j), each carrying **1 mark**.
+    2. **Questions 2-11** each carry **10 marks** and are based on different topics.
 
-const ROOT_FOLDER_ID = "1nclsgRlzsq9-XfNxzDPz_hfmDxs29HbA";
+    ### **Your Task:**
+    - Identify **5 of the most frequently repeated 1-mark questions** (from Question 1).
+    - Identify **5 of the most frequently repeated topics** from the **10-mark questions (Questions 2-11).**
+    - Focus on recurring patterns, key concepts, and topics that have appeared in multiple exams.
+    - For each question and topic, include a count of how many times it appears.
+    - Provide your response in **strict JSON format** as follows:
 
-export const getFiles = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
-  try {
-    const folderId = await getFolderIdByPath(folderPath);
-
-    if (!folderId) {
-      console.error(`No folder found for path: ${folderPath}`);
-      return [];
+    {
+      "one_mark_questions": [
+        {"text": "Question 1", "count": 3},
+        {"text": "Question 2", "count": 2},
+        {"text": "Question 3", "count": 2},
+        {"text": "Question 4", "count": 2},
+        {"text": "Question 5", "count": 1}
+      ],
+      "ten_mark_topics": [
+        {"text": "Topic 1", "count": 4},
+        {"text": "Topic 2", "count": 3},
+        {"text": "Topic 3", "count": 3},
+        {"text": "Topic 4", "count": 2},
+        {"text": "Topic 5", "count": 2}
+      ]
     }
-
-    const response = await drive.files.list({
-      q: `'${folderId}' in parents`,
-      fields: "files(id, name, mimeType, webViewLink)",
-    });
-
-    return response.data.files || [];
-  } catch (error) {
-    console.error("Error fetching files from Google Drive:", error);
-    return [];
-  }
-};
-
-export const getFolders = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
-  try {
-    const folderId = await getFolderIdByPath(folderPath);
-
-    if (!folderId) {
-      console.error(`No folder found for path: ${folderPath}`);
-      return [];
-    }
-
-    const response = await drive.files.list({
-      q: `'${folderId}' in parents and mimeType = 'application/vnd.google-apps.folder'`,
-      fields: "files(id, name, mimeType, webViewLink)",
-    });
     
-    return response.data.files || [];
-  } catch (error) {
-    console.error("Error fetching folders from Google Drive:", error);
-    return [];
-  }
-};
+    Input Text:
+    ${text}
+  `;
 
-export const getFilesById = async (folderId: string) =>{
   try {
-    if (!folderId) {
-      console.error(`No folder found for path: ${folderId}`);
-      return [];
-    }
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.text();
+    console.log(responseText);
 
-    const response = await drive.files.list({
-      q: `'${folderId}' in parents`,
-      fields: "files(id, name, mimeType, webViewLink)",
-    });
+    const jsonStart = responseText.indexOf("{");
+    const jsonEnd = responseText.lastIndexOf("}") + 1;
+    const cleanJson = responseText.substring(jsonStart, jsonEnd);
 
-    return response.data.files || [];
+    return JSON.parse(cleanJson);
   } catch (error) {
-    console.error("Error fetching files from Google Drive:", error);
-    return [];
-  }
-}
-
-const getFolderIdByPath = async (folderPath: string): Promise<string | null> => {
-  const folderNames = folderPath.split("/");
-  let parentId = ROOT_FOLDER_ID;
-
-  for (const folderName of folderNames) {
-    const folderId = await getFolderIdByName(parentId, folderName);
-    if (!folderId) {
-      console.error(`Folder '${folderName}' not found`);
-      return null;
-    }
-    parentId = folderId;
-  }
-
-  return parentId;
-};
-
-const getFolderIdByName = async (
-  parentId: string,
-  folderName: string
-): Promise<string | null> => {
-  try {
-    const response = await drive.files.list({
-      q: `'${parentId}' in parents and name='${folderName}' and mimeType='application/vnd.google-apps.folder'`,
-      fields: "files(id, name)",
-    });
-    
-
-    const folder = response.data.files?.[0];
-    return folder ? folder.id || null : null;
-  } catch (error) {
-    console.error(`Error finding folder '${folderName}':`, error);
-    return null;
+    console.error("Gemini API Error:", error);
+    return { one_mark_questions: [], ten_mark_topics: [] };
   }
 };

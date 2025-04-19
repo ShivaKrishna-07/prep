@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/header/Navbar";
 import Footer from "@/components/footer/Footer";
-import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,18 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-       
         <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-          <Navbar/>
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
           {children}
-          <Footer/>
-          </ThemeProvider>
-
+          <Toaster position="bottom-right" reverseOrder={false}  />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

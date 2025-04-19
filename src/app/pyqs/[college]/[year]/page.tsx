@@ -1,4 +1,4 @@
-import { getFolders } from "@/app/api/gemini";
+import { getFolders } from "@/app/api/drive";
 import BranchCard from "@/components/BranchCard";
 import YearOne from "@/components/YearOne";
 import React from "react";

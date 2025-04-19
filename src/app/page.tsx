@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 export default function Home() {
   dotenv.config();
   return (
-    <div>
+    <div> 
       <HomePage />
       <Banner />
     </div>

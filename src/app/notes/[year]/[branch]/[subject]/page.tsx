@@ -1,4 +1,4 @@
-import { getFilesById } from "@/app/api/gemini";
+import { getFilesById } from "@/app/api/drive";
 import ShowFiles from "@/components/files/ShowFiles";
 import React from "react";
 

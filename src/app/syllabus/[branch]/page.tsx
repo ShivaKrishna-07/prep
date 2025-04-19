@@ -1,6 +1,6 @@
 
 import ShowFiles from "@/components/files/ShowFiles";
-import { getFiles } from "@/app/api/gemini";
+import { getFiles } from "@/app/api/drive";
 
 export default async function Page({ params }: { params: { branch: string } }) {
 
