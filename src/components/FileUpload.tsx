@@ -102,9 +102,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFilesSelected, isProcessi
   return (
     <Card className="w-full">
       <div 
-        className={`relative p-6 border-2 border-zinc-500 border-dashed rounded-lg transition-colors ${
-          dragActive ? "border-blue-400 bg-blue-50" : "border-gray-300"
-        }`}
+        className='relative p-6 border-2 border-border border-dashed rounded-lg transition-colors'
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
@@ -121,9 +119,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFilesSelected, isProcessi
         />
 
         <div className="flex flex-col items-center justify-center space-y-3 text-center">
-          <Upload className="w-10 h-10 text-gray-400" />
+          <Upload className="w-10 h-10 text-muted" />
           <div className="text-lg font-medium">Drag & drop PDF files here</div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted">
             or
           </div>
           <Button 
@@ -134,36 +132,11 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFilesSelected, isProcessi
           >
             Browse Files
           </Button>
-          <div className="text-xs text-gray-500 mt-2">
+          <div className="text-xs text-muted mt-2">
             Upload 2-10 PDF files (Max 10MB each)
           </div>
         </div>
       </div>
-
-      {selectedFiles.length > 0 && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-          <h3 className="text-sm font-medium mb-2">Selected Files ({selectedFiles.length}):</h3>
-          <ul className="space-y-2 max-h-48 overflow-y-auto">
-            {selectedFiles.map((file, index) => (
-              <li key={index} className="flex items-center justify-between bg-white p-2 rounded border">
-                <div className="flex items-center">
-                  <FileText className="w-4 h-4 mr-2 text-blue-500" />
-                  <span className="text-sm truncate max-w-[250px]">{file.name}</span>
-                </div>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  className="h-6 w-6 p-0" 
-                  onClick={() => removeFile(index)}
-                  disabled={isProcessing}
-                >
-                  <FileX className="w-4 h-4 text-gray-500 hover:text-red-500" />
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </Card>
   );
 };

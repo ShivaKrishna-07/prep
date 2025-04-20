@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Header from "./files/Header";
 import BranchCard from "./BranchCard";
 import { branches } from "@/data/branch";
-
 import {
   Code2,
   MonitorSmartphone,
@@ -40,11 +39,10 @@ export interface Branch {
 
 const SyllabusPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const filteredBranches = filterBranches(branches, searchQuery);
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-background text-foreground p-8">
       <div className="max-w-3xl mx-auto">
         <Header heading={'Select your Branch'} tag="branches" total={filteredBranches.length} />
         <SearchBar placeholder="Search branch" searchQuery={searchQuery} onSearchChange={setSearchQuery} />

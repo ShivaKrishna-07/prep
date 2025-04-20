@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 export default function Home() {
   dotenv.config();
   return (
-    <div> 
+    <div className="ooverscroll-contain"> 
       <HomePage />
       <Banner />
     </div>

@@ -40,7 +40,7 @@ const page = async ({ params }: NotesProps) => {
   const folders = await getFiles(path);
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen p-8">
       <div className="max-w-3xl mx-auto">
         <Header
           heading={"Select your Subject"}

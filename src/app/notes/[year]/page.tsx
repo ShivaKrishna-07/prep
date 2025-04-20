@@ -26,7 +26,7 @@ const Page = async ({ params }: NotesProps) => {
   return year === "1st_year" ? (
     <YearOne folders={folders} />
   ) : (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen p-8">
       <div className="max-w-3xl mx-auto">
         <Header
           heading="Select your Branch"

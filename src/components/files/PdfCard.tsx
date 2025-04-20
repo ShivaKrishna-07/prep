@@ -30,13 +30,13 @@ const PdfCard: React.FC<PdfCardProps> = ({ name, webViewLink }) => {
   };
 
   return (
-    <div className="bg-zinc-900 rounded-md p-6 hover:bg-zinc-800/90 transition-all duration-300 group">
+    <div className="bg-background dark:bg-bg2 shadow-custom rounded-md p-6 transition-all duration-300 group">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <div className="p-3 bg-zinc-800 rounded-lg group-hover:bg-zinc-700 transition-colors">
-            <FileText className="w-7 h-7 text-white" />
+          <div className="p-3 bg-bg2 dark:bg-zinc-800 border border-border rounded-lg transition-colors">
+            <FileText className="w-7 h-7 text-muted" />
           </div>
-          <h3 className="md:text-xl sm:text-2xl font-semibold text-white">{name}</h3>
+          <h3 className="md:text-xl sm:text-2xl font-semibold text-foreground">{name}</h3>
         </div>
         <div className="flex gap-2">
           {/* View Button */}
@@ -44,19 +44,19 @@ const PdfCard: React.FC<PdfCardProps> = ({ name, webViewLink }) => {
             href={webViewLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 transition-colors duration-200"
+            className="flex items-center justify-center p-2 rounded-lg border border-border bg-bg2 dark:bg-bg3 dark:hover:bg-zinc-700 transition-colors duration-200"
             title="View PDF"
           >
-            <Eye className="w-5 h-5 text-white" />
+            <Eye className="w-5 h-5 text-muted" />
           </a>
 
           {/* Download Button */}
           <button
             onClick={handleDownload}
-            className="flex items-center justify-center p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 transition-colors duration-200"
+            className="flex items-center justify-center p-2 border border-border rounded-lg bg-bg2 dark:bg-bg3 dark:hover:bg-zinc-700 transition-colors duration-200"
             title="Download PDF"
           >
-            <Download className="w-5 h-5 text-white" />
+            <Download className="w-5 h-5 text-muted" />
           </button>
         </div>
       </div>

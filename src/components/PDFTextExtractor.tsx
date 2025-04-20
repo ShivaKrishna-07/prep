@@ -179,7 +179,7 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
             </p>
             <span className="text-sm font-medium">{progress}%</span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <Progress value={progress} className="h-2 text-foreground bg-background" />
         </div>
 
         <div className="space-y-6">
@@ -231,19 +231,19 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
         <div className="mt-6 space-y-6">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Question Analysis Results</h2>
-            <Button variant="outline" onClick={onReset}>
+            <Button variant="outline" className="text-muted" onClick={onReset}>
               Upload New Files
             </Button>
           </div>
 
-          <Card className="border-2 border-primary/20">
+          <Card className="border-2 border-border">
             <CardHeader>
               <CardTitle>Most Frequently Asked Questions</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg font-medium mb-2">
+                  <h3 className="text-lg text-muted font-medium mb-2">
                     Frequent 1-Mark Questions
                   </h3>
                   <ol className="list-decimal list-inside space-y-2">
@@ -251,10 +251,10 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
                       (question, idx) => (
                         <li
                           key={idx}
-                          className="p-2 border border-zinc-900 rounded-md flex items-start"
+                          className="p-2 border border-border rounded-md flex items-start"
                         >
                           <span className="flex-grow">{question.text}</span>
-                          <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-black bg-white rounded-full">
+                          <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-background bg-foreground rounded-full">
                             {question.count}×
                           </span>
                         </li>
@@ -263,7 +263,7 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
                   </ol>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-2">
+                  <h3 className="text-lg text-muted font-medium mb-2">
                     Frequent 10-Mark Topics
                   </h3>
                   <ol className="list-decimal list-inside space-y-2">
@@ -271,10 +271,10 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
                       (topic, idx) => (
                         <li
                           key={idx}
-                          className="p-2 border border-zinc-900 rounded-md flex items-start"
+                          className="p-2 border border-border rounded-md flex items-start"
                         >
                           <span className="flex-grow">{topic.text}</span>
-                          <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-black bg-white rounded-full">
+                          <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-background bg-foreground rounded-full">
                             {topic.count}×
                           </span>
                         </li>

@@ -21,11 +21,11 @@ const Card = ({ title, link }: Resources) => {
 
   return (
     <Link href={link}>
-      <div className="h-32 md:h-48 flex flex-col justify-center items-center border border-zinc-800 w-[350px] md:w-[400px] gap-2 text-white cursor-pointer hover:bg-zinc-800 rounded-xl p-8">
+      <div className="h-32 md:h-48 flex flex-col justify-center items-center border border-border w-[350px] md:w-[400px] gap-2 shadow-custom text-foreground cursor-pointer rounded-xl p-8">
         <div className="">
-          <IconComponent className="text-white text-5xl rounded-lg " />
+          <IconComponent className="text-5xl rounded-lg " />
         </div>
-        <h4 className="font-medium" >{title}</h4>
+        <h4 className="font-medium text-muted" >{title}</h4>
       </div>
     </Link>
   ); 

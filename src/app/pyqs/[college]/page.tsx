@@ -5,7 +5,7 @@ import { icons } from "lucide-react";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen p-8">
       <div className="max-w-3xl mx-auto">
         <Header heading={"Select your Academic Year"} />
         <div className="flex flex-col gap-5">

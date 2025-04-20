@@ -4,7 +4,7 @@ import Card from "./Card";
 const Banner = () => {
   return (
     <div id="learn" className="min-h-screen p-10 pt-24">
-      <h1 className="text-white text-4xl text-center font-extrabold">
+      <h1 className="text-foreground text-4xl text-center font-extrabold">
         Our Resources
       </h1>
 

@@ -13,7 +13,7 @@ const page = async ({ searchParams }: PageProps) => {
   const files = await getFilesById(folderId);
 
   return (
-    <div className="text-white">
+    <div>
       <ShowFiles files={files} />
     </div>
   );

@@ -29,7 +29,7 @@ const ShowFiles = ({ files }: FilesPageProps) => {
   const filteredPdfs = filterPdfs(files, searchQuery);
 
   return (
-    <div className="min-h-screen bg-black text-white p-8">
+    <div className="min-h-screen bg-background text-foreground p-8">
       <div className="max-w-3xl mx-auto">
         <Header
           heading={`${branch.toUpperCase()} Syllabus`}

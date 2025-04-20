@@ -26,7 +26,7 @@ const Index = () => {
           <header className="flex justify-between items-center mb-8">
             <div className="text-center flex-1">
               <h1 className="text-3xl font-bold text-foreground mb-2">PYQ Analyzer</h1>
-              <p className="text-muted-foreground">
+              <p className="text-muted">
                 Upload previous year papers and let AI highlight the most important questions and topics
               </p> 
             </div> 
@@ -34,7 +34,7 @@ const Index = () => {
 
           <Card className="shadow-md">
             <CardHeader>
-              <CardTitle>Upload Previous Year Papers (PDF)</CardTitle>
+              <CardTitle >Upload Previous Year Papers (PDF)</CardTitle>
               <CardDescription>
                 Select 2-10 exam PDFs. Our AI will extract key questions, find patterns, and suggest important areas for smart preparation.
               </CardDescription>
