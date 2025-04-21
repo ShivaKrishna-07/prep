@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { NavLink } from "./NavLink";
 import ThemeToggle from "@/components/ThemeToggle";
+import UserIcon from "../UserIcon";
 
 interface NavLink {
   name: string;
@@ -48,46 +49,44 @@ const Navbar: NextPage = () => {
 
           {/* Navigation Links */}
           <div className="flex justify-between items-center gap-6">
-          <div className="hidden md:flex items-center gap-6">
-            <ul className="flex items-center gap-5 text-[1rem]">
-              {navLinks.map((navLink) => (
-                <li key={navLink.path}>
-                  {navLink.external ? (
-                    <NavLink
-                      href={navLink.path}
-                      aria-label="desktop navbar link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={(active) =>
-                        active
-                          ? "inline-block py-2 px-3 text-center rounded-lg text-foreground"
-                          : "inline-block py-2 px-3 text-center text-muted rounded-lg"
-                      }
-                    >
-                      {navLink.name}
-                    </NavLink>
-                  ) : (
-                    <NavLink
-                      href={navLink.path}
-                      className={(active) =>
-                        active
-                          ? "inline-block py-2 px-3 text-center font-bold rounded-lg"
-                          : "inline-block py-2 px-3 text-center text-muted rounded-lg"
-                      }
-                    >
-                      {navLink.name}
-                    </NavLink>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <div className="hidden md:flex items-center gap-5">
+              <ul className="flex items-center gap-5 text-[1rem]">
+                {navLinks.map((navLink) => (
+                  <li key={navLink.path}>
+                    {navLink.external ? (
+                      <NavLink
+                        href={navLink.path}
+                        aria-label="desktop navbar link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={(active) =>
+                          active
+                            ? "inline-block py-2 px-3 text-center rounded-lg text-foreground"
+                            : "inline-block py-2 px-3 text-center text-muted rounded-lg"
+                        }
+                      >
+                        {navLink.name}
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        href={navLink.path}
+                        className={(active) =>
+                          active
+                            ? "inline-block py-2 px-3 text-center font-bold rounded-lg"
+                            : "inline-block py-2 px-3 text-center text-muted rounded-lg"
+                        }
+                      >
+                        {navLink.name}
+                      </NavLink>
+                    )}
+                  </li>
+                ))}
+              </ul>
 
-            {/* Theme Toggle Button */}
-          </div>
-          <div>
+              {/* Theme Toggle Button */}
+            </div>
             <ThemeToggle />
-
-          </div>
+            <UserIcon />
           </div>
         </div>
       </nav>

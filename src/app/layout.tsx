@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/header/Navbar";
-import Footer from "@/components/footer/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/theme-provider";
 import ClientLayout from "./ClientLayout";
@@ -22,17 +22,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning={true}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <ClientLayout>
-            {children}
-            <Toaster position="bottom-right" reverseOrder={false} />
-          </ClientLayout>
-        </ThemeProvider>
+        <ClerkProvider  appearance={{ baseTheme: dark }} >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <ClientLayout >
+              {children}
+              <Toaster position="bottom-right" reverseOrder={false} />
+            </ClientLayout>
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

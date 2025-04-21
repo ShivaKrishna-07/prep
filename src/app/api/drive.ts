@@ -15,7 +15,7 @@ const auth = new google.auth.GoogleAuth({
 
 const drive: drive_v3.Drive = google.drive({ version: "v3", auth });
 
-const ROOT_FOLDER_ID = "1nclsgRlzsq9-XfNxzDPz_hfmDxs29HbA";
+const ROOT_FOLDER_ID = process.env.ROOT_FOLDER_ID as string;;
 
 export const getFiles = async (folderPath: string): Promise<drive_v3.Schema$File[]> => {
   try {
