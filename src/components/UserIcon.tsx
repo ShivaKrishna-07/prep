@@ -1,5 +1,6 @@
 "use client";
 import { useUser, SignOutButton } from "@clerk/nextjs";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { isErrored } from "stream";
 
@@ -16,7 +17,9 @@ const UserIcon = () => {
         className="rounded-full flex items-center cursor-pointer"
       >
         {user.imageUrl ? (
-          <img
+          <Image
+            width={100}
+            height={100}
             src={user.imageUrl}
             alt="User"
             className="rounded-full w-7 h-7"

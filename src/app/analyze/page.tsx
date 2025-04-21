@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import FileUploader from '@/components/FileUpload';
-import PDFTextExtractor from '@/components/PDFTextExtractor';
+import dynamic from "next/dynamic";
+
+const PDFTextExtractor = dynamic(() => import('@/components/PDFTextExtractor'), { ssr: false });
 
 const Index = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);

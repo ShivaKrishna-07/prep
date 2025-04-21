@@ -25,7 +25,22 @@ const nextConfig = {
     ],
   },
   trailingSlash: true,
-
+  webpack: (config, { isServer }) => {
+    // This is to handle the canvas.node binary file
+    config.resolve.alias.canvas = false;
+    
+    // Optionally, explicitly ignore the problematic modules
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        canvas: false,
+        "pdfjs-dist/node_modules/canvas": false
+      };
+    }
+    
+    return config;
+  },
 };
 
 export default nextConfig;

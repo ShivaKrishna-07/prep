@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import { Button } from "@/components/ui/button";
@@ -28,10 +30,7 @@ interface AnalyzedQuestions {
   ten_mark_topics: QuestionWithCount[];
 }
 
-const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
-  files,
-  onReset,
-}) => {
+const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({ files, onReset }) => {
   const [extractedDocuments, setExtractedDocuments] = useState<ExtractedDocument[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -41,13 +40,11 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
 
   // Initialize the PDF.js worker
   useEffect(() => {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-      "pdfjs-dist/build/pdf.worker.min.js",
-      import.meta.url
-    ).toString();
+    // Fixed version for use in Next.js / React
+    const workerSrc = require("pdfjs-dist/build/pdf.worker.min.js");
+    pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
   }, []);
 
-  // Extract text from image using Tesseract
   const extractTextFromImage = async (imageDataUrl: string): Promise<string> => {
     try {
       const worker = await createWorker("eng");
@@ -60,7 +57,6 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
     }
   };
 
-  // Extract text from a PDF file
   const extractText = useCallback(async (file: File): Promise<string> => {
     try {
       const arrayBuffer = await file.arrayBuffer();
@@ -104,15 +100,14 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
     }
   }, []);
 
-  // Process the files (extract and analyze)
   const processFiles = useCallback(async () => {
     if (files.length < 2) {
-      toast.success("Please upload at least 2 PDF files.");
+      toast.error("Please upload at least 2 PDF files.");
       return;
     }
 
     if (files.length > 10) {
-      toast.success("You can upload a maximum of 10 PDF files.");
+      toast.error("You can upload a maximum of 10 PDF files.");
       return;
     }
 
@@ -125,24 +120,19 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
     const documents: ExtractedDocument[] = [];
 
     try {
-      // Extract text from all PDFs
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const text = await extractText(file);
-        documents.push({
-          name: file.name,
-          text,
-        });
-        setProgress(Math.round(((i + 1) / files.length) * 50)); // First 50% of progress for extraction
+        documents.push({ name: file.name, text });
+        setProgress(Math.round(((i + 1) / files.length) * 50));
       }
 
       setExtractedDocuments(documents);
       const combinedText = documents.map((doc) => doc.text).join("\n-----------------------------------------------\n");
       setText(combinedText);
 
-      // Now analyze the extracted text
       setProcessingStage("analyzing");
-      setProgress(60); // Start analyzing at 60%
+      setProgress(60);
 
       const result = await analyzePyqs(combinedText);
       setAnalyzedQuestions(result);
@@ -152,7 +142,7 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
 
       toast.success(`Successfully analyzed ${files.length} PDF files.`);
     } catch (error) {
-      toast.success("Failed to process the PDF files.");
+      toast.error("Failed to process the PDF files.");
       console.error("Error processing files:", error);
     } finally {
       setIsProcessing(false);
@@ -182,45 +172,25 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
           <Progress value={progress} className="h-2 text-foreground bg-background" />
         </div>
 
-        <div className="space-y-6">
-          {processingStage === "analyzing" && (
-            <div className="space-y-6">
-              <Card className="border-2 border-primary/20">
-                <CardHeader>
-                  <CardTitle>Analyzing Question Patterns</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="text-lg font-medium mb-4">
-                        Finding Frequent 1-Mark Questions
-                      </h3>
-                      <div className="space-y-3">
-                        {Array(5)
-                          .fill(0)
-                          .map((_, idx) => (
-                            <Skeleton key={idx} className="h-10 w-full" />
-                          ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium mb-4">
-                        Finding Frequent 10-Mark Topics
-                      </h3>
-                      <div className="space-y-3">
-                        {Array(5)
-                          .fill(0)
-                          .map((_, idx) => (
-                            <Skeleton key={idx} className="h-10 w-full" />
-                          ))}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-        </div>
+        {processingStage === "analyzing" && (
+          <Card className="border-2 border-primary/20">
+            <CardHeader>
+              <CardTitle>Analyzing Question Patterns</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-lg font-medium mb-4">Finding Frequent 1-Mark Questions</h3>
+                  <div className="space-y-3">{Array(5).fill(0).map((_, idx) => <Skeleton key={idx} className="h-10 w-full" />)}</div>
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium mb-4">Finding Frequent 10-Mark Topics</h3>
+                  <div className="space-y-3">{Array(5).fill(0).map((_, idx) => <Skeleton key={idx} className="h-10 w-full" />)}</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     );
   }
@@ -243,43 +213,29 @@ const PDFTextExtractor: React.FC<PDFTextExtractorProps> = ({
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg text-muted font-medium mb-2">
-                    Frequent 1-Mark Questions
-                  </h3>
+                  <h3 className="text-lg text-muted font-medium mb-2">Frequent 1-Mark Questions</h3>
                   <ol className="list-decimal list-inside space-y-2">
-                    {analyzedQuestions.one_mark_questions.map(
-                      (question, idx) => (
-                        <li
-                          key={idx}
-                          className="p-2 border border-border rounded-md flex items-start"
-                        >
-                          <span className="flex-grow">{question.text}</span>
-                          <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-background bg-foreground rounded-full">
-                            {question.count}×
-                          </span>
-                        </li>
-                      )
-                    )}
+                    {analyzedQuestions.one_mark_questions.map((question, idx) => (
+                      <li key={idx} className="p-2 border border-border rounded-md flex items-start">
+                        <span className="flex-grow">{question.text}</span>
+                        <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-background bg-foreground rounded-full">
+                          {question.count}×
+                        </span>
+                      </li>
+                    ))}
                   </ol>
                 </div>
                 <div>
-                  <h3 className="text-lg text-muted font-medium mb-2">
-                    Frequent 10-Mark Topics
-                  </h3>
+                  <h3 className="text-lg text-muted font-medium mb-2">Frequent 10-Mark Topics</h3>
                   <ol className="list-decimal list-inside space-y-2">
-                    {analyzedQuestions.ten_mark_topics.map(
-                      (topic, idx) => (
-                        <li
-                          key={idx}
-                          className="p-2 border border-border rounded-md flex items-start"
-                        >
-                          <span className="flex-grow">{topic.text}</span>
-                          <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-background bg-foreground rounded-full">
-                            {topic.count}×
-                          </span>
-                        </li>
-                      )
-                    )}
+                    {analyzedQuestions.ten_mark_topics.map((topic, idx) => (
+                      <li key={idx} className="p-2 border border-border rounded-md flex items-start">
+                        <span className="flex-grow">{topic.text}</span>
+                        <span className="inline-flex items-center justify-center px-2 py-1 ml-2 text-xs font-bold leading-none text-background bg-foreground rounded-full">
+                          {topic.count}×
+                        </span>
+                      </li>
+                    ))}
                   </ol>
                 </div>
               </div>
