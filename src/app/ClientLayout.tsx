@@ -21,7 +21,7 @@ const ClientLayout = ({ children }: ClientLayoutProps) => {
         {isMobile ? <MobileMenuBar /> : <Footer />}
 
         {/* Add padding so content doesn't go behind fixed mobile menu */}
-        {isMobile && <div className="h-[50px]" />}
+        {isMobile && <div className="h-[100px]" />}
      
     </div>
   );

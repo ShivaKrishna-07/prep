@@ -86,7 +86,9 @@ const Navbar: NextPage = () => {
               {/* Theme Toggle Button */}
             </div>
             <ThemeToggle />
-            <UserIcon />
+            <div>
+              <UserIcon />
+            </div>
           </div>
         </div>
       </nav>
