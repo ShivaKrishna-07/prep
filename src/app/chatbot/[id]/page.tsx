@@ -1,15 +1,14 @@
+// app/chatbot/[id]/page.tsx
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { ChatSidebar } from "@/components/chat/ChatSidebar";
 import { ChatWindow } from "@/components/chat/ChatWindow";
 
-const Page = async ({
+export default async function ChatPage({
   params,
-  searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+  params: { id: string };
+}) {
   const user = await currentUser();
   const collegeName = user?.publicMetadata?.collegeName;
 
@@ -20,9 +19,7 @@ const Page = async ({
   return (
     <div className="flex h-[86.5vh] w-full overflow-hidden">
       <ChatSidebar />
-      <ChatWindow userId={user.id} chatId={searchParams.id as string} />
+      <ChatWindow userId={user.id} chatId={params.id} />
     </div>
   );
-};
-
-export default Page;
+}
