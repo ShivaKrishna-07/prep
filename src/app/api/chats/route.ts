@@ -4,6 +4,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import connectToDB from "@/lib/db";
 import { Chat } from "@/lib/models/Chat";
 import { UserChats } from "@/lib/models/userChats";
+import { generateChatResponse } from "@/lib/gemini";
 
 // Create new chat
 export async function POST(req: NextRequest) {
@@ -36,6 +37,25 @@ export async function POST(req: NextRequest) {
       },
       { upsert: true, new: true }
     );
+
+    const messages = [{ role: "user", content: text }]
+    const aiResponse = await generateChatResponse(messages);
+
+    if (typeof aiResponse !== "string") {
+      return NextResponse.json(
+        { error: "Response Failed" },
+        { status: 400 }
+      );
+    }
+
+    await Chat.findByIdAndUpdate(newChat._id, {
+      $push: {
+        messages: {
+          role: "assistant",
+          content: aiResponse,
+        },
+      },
+    });
 
     return NextResponse.json({ chatId: newChat._id });
     

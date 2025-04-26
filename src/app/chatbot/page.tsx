@@ -1,7 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { ChatSidebar } from "@/components/chat/ChatSidebar";
 import { ChatWindow } from "@/components/chat/ChatWindow";
+import { ChatSidebar } from "@/components/chat/ChatSidebar";
 
 const Page = async ({
   params,
@@ -18,9 +18,10 @@ const Page = async ({
   }
 
   return (
-    <div className="flex h-[86.5vh] w-full overflow-hidden">
-      <ChatSidebar />
-      <ChatWindow userId={user.id} chatId={searchParams.id as string} />
+    <div className="flex h-[calc(100dvh-120px)] md:h-[calc(100dvh-64px)] w-full overflow-hidden bg-background">
+      <div className="flex-1 w-screen relative">
+        <ChatWindow userId={user.id} chatId={searchParams.id as string} />
+      </div>
     </div>
   );
 };

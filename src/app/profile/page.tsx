@@ -14,6 +14,7 @@ import {
   User,
 } from "lucide-react";
 import Loader from "@/components/ui/Loader";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface ProfileData {
   collegeName?: string;
@@ -81,6 +82,7 @@ export default function ProfilePage() {
         <h1 className="text-2xl w-full mr-10 md:mr-0 text-center font-semibold">
           Your Profile
         </h1>
+        <ThemeToggle/>
       </div>
 
       <div className="flex flex-col md:flex-row gap-6 h-full">

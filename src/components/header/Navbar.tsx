@@ -35,13 +35,13 @@ const Navbar: NextPage = () => {
 
   return (
     <Suspense>
-      <nav className="top-0 z-10 sticky border-b border-border mx-auto bg-transparent backdrop-blur-sm">
+      <nav className="top-0 h-16 flex items-center z-10 sticky border-b border-border mx-auto bg-transparent backdrop-blur-sm">
         <div className="flex justify-between md:justify-around items-center p-5 w-full">
           {/* Logo */}
           <div id="logo-ph">
             <Link
               href="/"
-              className="inline-flex h-10 items-center text-foreground rounded-lg font-extrabold text-[2rem]"
+              className="inline-flex h-10 items-center text-foreground rounded-lg font-extrabold text-[1.8rem]"
             >
               Prep
             </Link>

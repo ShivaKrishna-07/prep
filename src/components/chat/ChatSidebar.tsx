@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Plus, MenuIcon, X } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { IoChatbubblesSharp } from "react-icons/io5";
 
 interface ChatSummary {
   _id: string;
@@ -14,7 +17,10 @@ interface ChatSummary {
 
 export function ChatSidebar() {
   const [chats, setChats] = useState<ChatSummary[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const router = useRouter();
+  const pathname = usePathname();
 
   const fetchChats = async () => {
     try {
@@ -27,52 +33,111 @@ export function ChatSidebar() {
     }
   };
 
-  // components/chat/ChatSidebar.tsx
-const createNewChat = async () => {
-  try {
-    const res = await fetch("/api/chats", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: "New Chat" }),
-    });
-    
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error.error || "Failed to create chat");
-    }
-    
-    const { chatId } = await res.json();
-    router.push(`/chatbot/${chatId}`);
-    
-  } catch (error) {
-    console.error("Chat creation error:", error);
-  }
-};
-
   useEffect(() => {
     fetchChats();
+
+    // Handle window resize
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setSidebarOpen(!mobile);
+    };
+
+    // Set initial state
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return (
-    <div className="w-64 border-r border-border bg-background text-foreground p-4 flex flex-col h-full">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Chats</h2>
-        <Button size="icon" onClick={createNewChat}>
-          <Plus className="w-4 h-4" />
-        </Button>
+  const SidebarContent = () => (
+    <div className="flex flex-col gap-8 h-full">
+      <div className="flex flex-col gap-3 mt-16 px-2">
+        <div
+          className="flex items-center gap-2 cursor-pointer "
+          onClick={() => router.push("/chatbot")}
+        >
+          <div className="border border-border bg-foreground text-background rounded-full p-[5px] w-fit">
+            <Plus className="w-4 h-4" />
+          </div>
+          <p>New Chat</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-fit ml-[3px]">
+            <IoChatbubblesSharp className="w-6 h-6" />
+          </div>
+          <h2 className="">Chats</h2>
+        </div>
       </div>
 
       <ScrollArea className="flex-1">
-        <div className="space-y-2">
+        <div className="">
           {chats.map((chat) => (
             <Link key={chat._id} href={`/chatbot/${chat._id}`}>
-              <Button variant="ghost" className="w-full justify-start truncate">
+              <Button
+                variant={pathname.includes(chat._id) ? "secondary" : "ghost"}
+                className="w-full justify-start text-sm truncate h-auto py-2"
+              >
                 {chat.title}
               </Button>
             </Link>
           ))}
+          {chats.length === 0 && (
+            <p className="text-muted-foreground text-center py-4 text-sm">
+              No chats yet
+            </p>
+          )}
         </div>
       </ScrollArea>
     </div>
+  );
+
+  // Mobile sidebar (Sheet component)
+  const MobileSidebar = () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="md:hidden">
+          <MenuIcon className="h-6 w-6" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-72 p-0">
+        <div className="h-full py-4">
+          <SidebarContent />
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+
+  // Desktop sidebar
+  const DesktopSidebar = () => (
+    <div
+      className={cn(
+        "border-r border-border bg-background transition-all duration-300 h-full",
+        sidebarOpen ? "w-64" : "w-0"
+      )}
+    >
+      {sidebarOpen && (
+        <div className="p-4 h-full">
+          <SidebarContent />
+        </div>
+      )}
+    </div>
+  );
+
+  const ToggleSidebarButton = () => (
+    <div
+      className="hidden cursor-pointer p-2 rounded-lg border border-border md:flex absolute top-4 left-6 z-10"
+      onClick={() => setSidebarOpen(!sidebarOpen)}
+    >
+      <MenuIcon className="h-4 w-4" />
+    </div>
+  );
+
+  return (
+    <>
+      <MobileSidebar />
+      <DesktopSidebar />
+      {!isMobile && <ToggleSidebarButton />}
+    </>
   );
 }

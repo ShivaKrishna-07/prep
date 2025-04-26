@@ -4,11 +4,7 @@ import { redirect } from "next/navigation";
 import { ChatSidebar } from "@/components/chat/ChatSidebar";
 import { ChatWindow } from "@/components/chat/ChatWindow";
 
-export default async function ChatPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function ChatPage({ params }: { params: { id: string } }) {
   const user = await currentUser();
   const collegeName = user?.publicMetadata?.collegeName;
 
@@ -17,9 +13,10 @@ export default async function ChatPage({
   }
 
   return (
-    <div className="flex h-[86.5vh] w-full overflow-hidden">
-      <ChatSidebar />
-      <ChatWindow userId={user.id} chatId={params.id} />
+    <div className="flex h-[calc(100dvh-120px)] md:h-[calc(100dvh-64px)] w-full overflow-hidden">
+      <div className="flex-1 w-screen relative">
+        <ChatWindow userId={user.id} chatId={params.id} />
+      </div>
     </div>
   );
 }
