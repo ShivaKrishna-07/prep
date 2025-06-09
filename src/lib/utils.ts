@@ -30,6 +30,13 @@ export const slugify = (text: string | null | undefined) => {
     .replace(/-+$/, ''); // Trim hyphens from end
 };
 
+export function unslugify(slug: string): string {
+  return slug
+    .split('-') // Split on hyphens
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+    .join(' '); // Join back with space
+}
+
 export const filterPdfs = (pdfs: any, searchQuery: string) => {
   const query = searchQuery.toLowerCase();
   return pdfs.filter((pdf: Pdf) => 

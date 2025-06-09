@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 import { BotIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -140,7 +139,7 @@ export function ChatWindow({ userId, chatId }: ChatWindowProps) {
             </div>
             <div className="space-y-2">
               <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
-                Welcome to ChatBuddy
+                Welcome to ChatBot
               </h1>
               <p className="text-muted-foreground text-sm max-w-md mx-auto">
                 Ask anything and let&apos;s chat.

@@ -21,7 +21,7 @@ export default function HomePage() {
               }}
               className="text-3xl font-bold sm:text-[5vw] md:text-5xl lg:leading-[5.5rem] lg:text-[5rem] text-foreground"
             >
-              Explore. Learn.   Ace.
+              Explore. Learn. Ace.
             </Motion.div>
 
             <Motion.p

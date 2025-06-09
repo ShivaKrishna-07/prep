@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { ChatWindow } from "@/components/chat/ChatWindow";
-import { ChatSidebar } from "@/components/chat/ChatSidebar";
 
 const Page = async ({
   params,
