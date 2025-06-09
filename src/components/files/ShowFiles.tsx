@@ -36,14 +36,20 @@ const ShowFiles = ({ files }: FilesPageProps) => {
   const pathname = usePathname();
   const isNotesPage = pathname.startsWith("/notes");
   const [YtLink, setYtLink] = useState("");
+  const [YtChannel, setYtChannel] = useState("");
 
   const { subject, branch, year } = params;
   useEffect(() => {
     const subjectData = youtubeLinks[year]?.[subject];
+
     const finalLink = subjectData?.link?.trim()
       ? subjectData.link
       : "https://www.youtube.com";
+    const finalChannel = subjectData?.channel?.trim()
+      ? subjectData.channel
+      : "Youtube Learning";
     setYtLink(finalLink);
+    setYtChannel(finalChannel);
   }, [pathname, subject, year]);
 
   let heading = `${branch.toUpperCase()} Syllabus`;
@@ -69,7 +75,7 @@ const ShowFiles = ({ files }: FilesPageProps) => {
               <div>
                 <p className="text-sm text-muted">Recommended Channel</p>
                 <p className="text-base font-medium">
-                  Geeky Medics - Full Subject Coverage
+                  {YtChannel}
                 </p>
               </div>
             </div>
