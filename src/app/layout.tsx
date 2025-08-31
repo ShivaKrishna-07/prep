@@ -12,6 +12,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Prep",
   description: "Your one-stop portal for academic resources",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
